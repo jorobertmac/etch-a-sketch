@@ -1,5 +1,18 @@
+body {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+}
+#setup {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
 #color-control {
   display: flex;
+  justify-content: center;
 }
 
 .color-grid .row{
@@ -17,4 +30,31 @@
   width: 30px;
   height: 30px;
   border: 1px solid black;  
+}
+
+#grid {
+  box-sizing: content-box;
+  display: flex;
+  flex-direction: column;
+  width: 850px;
+  height: 850px;
+  border: 1px solid black;
+}
+
+.gridRow {
+  display: flex;
+  width: 100%;
+  height: 100%
+}
+
+.gridSquare {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  border: 1px solid lightgray;
+}
+
+.gridSquare:hover {
+  background-color: green;
 }

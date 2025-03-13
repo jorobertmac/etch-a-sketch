@@ -1,7 +1,20 @@
 // querySelectors
 const grid = document.querySelector("#grid")
 
+
+
+function checkGridSize(number) {
+  if (number < 1) {
+    return 1
+  } else if (number > 100) {
+    return 100
+  }
+  return number
+}
+
 function makeGrid(rows, columns) {
+  rows = checkGridSize(rows)
+  columns = checkGridSize(columns)
   for (let r = 0; r < rows; r++) {
     const row = document.createElement("div")
     row.className = "gridRow"

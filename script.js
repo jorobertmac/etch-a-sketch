@@ -4,7 +4,19 @@ const height = 850
 
 // querySelectors
 const grid = document.querySelector("#grid")
+const resizeButton = document.querySelector("#resize")
+resizeButton.addEventListener("click", resize)
 
+function resize() {
+  const widthInput = document.querySelector("#width")
+  const heightInput = document.querySelector("#height")
+  let widthInputValue = checkGridSize(parseInt(widthInput.value))
+  let heightInputValue = checkGridSize(parseInt(heightInput.value))
+  widthInput.value = widthInputValue
+  heightInput.value = heightInputValue
+  grid.replaceChildren()
+  makeGrid(heightInputValue, widthInputValue)
+}
 
 
 function checkGridSize(number) {

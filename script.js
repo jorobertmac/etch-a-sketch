@@ -1,3 +1,7 @@
+// variables
+const width = 850
+const height = 850
+
 // querySelectors
 const grid = document.querySelector("#grid")
 

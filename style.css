@@ -36,8 +36,6 @@ body {
   box-sizing: content-box;
   display: flex;
   flex-direction: column;
-  width: 850px;
-  height: 850px;
   border: 1px solid black;
 }
 

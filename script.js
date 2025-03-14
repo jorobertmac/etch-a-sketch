@@ -16,6 +16,19 @@ function checkGridSize(number) {
   return number
 }
 
+function makeGridProportion(rows, columns) {
+  if (rows === columns) {
+    grid.style.width = `${width}px`
+    grid.style.height = `${height}px`
+  } else if (rows < columns) {
+    grid.style.width = `${width}px`
+    grid.style.height = `${rows/columns*height}px`
+  } else if (rows > columns) {
+    grid.style.width = `${columns/rows*width}px`
+    grid.style.height = `${height}px`
+  }
+}
+
 function makeGrid(rows=16, columns=16) {
   rows = checkGridSize(rows)
   columns = checkGridSize(columns)
@@ -29,19 +42,6 @@ function makeGrid(rows=16, columns=16) {
       gridSquare.className = "gridSquare"
       row.appendChild(gridSquare)
     }
-  }
-}
-
-function makeGridProportion(rows, columns) {
-  if (rows === columns) {
-    grid.style.width = `${width}px`
-    grid.style.height = `${height}px`
-  } else if (rows < columns) {
-    grid.style.width = `${width}px`
-    grid.style.height = `${rows/columns*height}px`
-  } else if (rows > columns) {
-    grid.style.width = `${columns/rows*width}px`
-    grid.style.height = `${height}px`
   }
 }
 

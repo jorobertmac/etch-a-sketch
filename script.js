@@ -44,3 +44,5 @@ function makeGridProportion(rows, columns) {
     grid.style.height = `${height}px`
   }
 }
+
+makeGrid()

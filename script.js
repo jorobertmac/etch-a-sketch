@@ -12,7 +12,7 @@ function checkGridSize(number) {
   return number
 }
 
-function makeGrid(rows, columns) {
+function makeGrid(rows=16, columns=16) {
   rows = checkGridSize(rows)
   columns = checkGridSize(columns)
   for (let r = 0; r < rows; r++) {

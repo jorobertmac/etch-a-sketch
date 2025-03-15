@@ -25,34 +25,34 @@ body {
   border: 1px solid black;
 }
 
-#blackBox {
+#black-box {
   background-color: black;
 }
-#redBox {
+#red-box {
   background-color: red;
 }
-#orangeBox {
+#orange-box {
   background-color: orange;
 }
-#yellowBox {
+#yellow-box {
   background-color: yellow;
 }
-#brownBox {
+#brown-box {
   background-color: brown;
 }
-#whiteBox {
+#white-box {
   background-color: white;
 }
-#purpleBox {
+#purple-box {
   background-color: purple;
 }
-#blueBox {
+#blue-box {
   background-color: blue;
 }
-#greenBox {
+#green-box {
   background-color: green;
 }
-#grayBox {
+#gray-box {
   background-color: gray;
 }
 
@@ -74,13 +74,13 @@ body {
   border: 1px solid black;
 }
 
-.gridRow {
+.grid-row {
   display: flex;
   width: 100%;
   height: 100%
 }
 
-.gridSquare {
+.grid-square {
   display: flex;
   box-sizing: border-box;
   width: 100%;
@@ -88,7 +88,7 @@ body {
   border: 1px solid lightgray;
 }
 
-.gridSquare:hover {
+.grid-square:hover {
   background-color: green;
 }
 

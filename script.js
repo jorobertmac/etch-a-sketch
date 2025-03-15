@@ -1,6 +1,6 @@
 // variables
-const width = 850
-const height = 850
+const width = 750
+const height = 750
 let color = "rgb(0, 0, 0)"
 
 // querySelectors
@@ -12,13 +12,26 @@ const colorBox = document.querySelectorAll(".color-box")
 // addEventListeners
 resizeButton.addEventListener("click", resize)
 colorPicker.addEventListener("blur", (e) => {
+  unselectColorBox()
   setColor(e.target.value)
 })
 colorBox.forEach(box => {
   box.addEventListener("click", () =>{
+    unselectColorBox()
+    selectColorBox(box)
     setColor(getColorBoxColor(box))
   })
 })
+
+function selectColorBox(box) {
+  box.classList.add("selected")
+}
+
+function unselectColorBox() {
+  const selected = document.querySelector(".selected")
+  if (!selected) return
+  selected.classList.remove("selected")
+}
 
 function getColorBoxColor(box) {
   return window.getComputedStyle(box).getPropertyValue(`background-color`)

@@ -8,6 +8,7 @@ const grid = document.querySelector("#grid")
 const resizeButton = document.querySelector("#resize")
 const colorPicker =document.querySelector("#color-picker")
 const colorBox = document.querySelectorAll(".color-box")
+const colorPreviewPrimary = document.querySelector("#primary")
 
 // addEventListeners
 resizeButton.addEventListener("click", resize)
@@ -38,9 +39,8 @@ function getColorBoxColor(box) {
 }
 
 function setColor(newColor) {
-  console.log(`${typeof color}: ${color}`);
   color = newColor
-  console.log(`${typeof color}: ${color}`);
+  colorPreviewPrimary.style.backgroundColor = color
 }
 
 function resize() {

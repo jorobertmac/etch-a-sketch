@@ -1,11 +1,34 @@
 // variables
 const width = 850
 const height = 850
+let color = "rgb(0, 0, 0)"
 
 // querySelectors
 const grid = document.querySelector("#grid")
 const resizeButton = document.querySelector("#resize")
+const colorPicker =document.querySelector("#color-picker")
+const colorBox = document.querySelectorAll(".color-box")
+
+// addEventListeners
 resizeButton.addEventListener("click", resize)
+colorPicker.addEventListener("blur", (e) => {
+  setColor(e.target.value)
+})
+colorBox.forEach(box => {
+  box.addEventListener("click", () =>{
+    setColor(getColorBoxColor(box))
+  })
+})
+
+function getColorBoxColor(box) {
+  return window.getComputedStyle(box).getPropertyValue(`background-color`)
+}
+
+function setColor(newColor) {
+  console.log(`${typeof color}: ${color}`);
+  color = newColor
+  console.log(`${typeof color}: ${color}`);
+}
 
 function resize() {
   const widthInput = document.querySelector("#width")
@@ -47,11 +70,11 @@ function makeGrid(rows=16, columns=16) {
   makeGridProportion(rows, columns)
   for (let r = 0; r < rows; r++) {
     const row = document.createElement("div")
-    row.className = "gridRow"
+    row.className = "grid-row"
     grid.appendChild(row)
     for (let c = 0; c < columns; c++){
       const gridSquare = document.createElement("div")
-      gridSquare.className = "gridSquare"
+      gridSquare.className = "grid-square"
       row.appendChild(gridSquare)
     }
   }

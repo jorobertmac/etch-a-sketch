@@ -25,6 +25,37 @@ body {
   border: 1px solid black;
 }
 
+#blackBox {
+  background-color: black;
+}
+#redBox {
+  background-color: red;
+}
+#orangeBox {
+  background-color: orange;
+}
+#yellowBox {
+  background-color: yellow;
+}
+#brownBox {
+  background-color: brown;
+}
+#whiteBox {
+  background-color: white;
+}
+#purpleBox {
+  background-color: purple;
+}
+#blueBox {
+  background-color: blue;
+}
+#greenBox {
+  background-color: green;
+}
+#grayBox {
+  background-color: gray;
+}
+
 .color-preview {
   margin: 5px;
   width: 30px;
@@ -56,3 +87,4 @@ body {
 .gridSquare:hover {
   background-color: green;
 }
+

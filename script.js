@@ -6,23 +6,44 @@ let color = "rgb(0, 0, 0)"
 // querySelectors
 const grid = document.querySelector("#grid")
 const resizeButton = document.querySelector("#resize")
-const colorPicker =document.querySelector("#color-picker")
+const colorPicker = document.querySelector("#color-picker")
 const colorBox = document.querySelectorAll(".color-box")
 const colorPreviewPrimary = document.querySelector("#primary")
 
 // addEventListeners
 resizeButton.addEventListener("click", resize)
-colorPicker.addEventListener("blur", (e) => {
-  unselectColorBox()
+colorPicker.addEventListener("input", (e) => {
   setColor(e.target.value)
+  if (isCustomColor(getSelected())) {
+    getSelected().style.backgroundColor = color
+  }
 })
-colorBox.forEach(box => {
-  box.addEventListener("click", () =>{
+
+colorBox.forEach((box) => {
+  box.addEventListener("click", () => {
+    if (isSelected(box) && isCustomColor(box)) {
+      unselectColorBox()
+      return
+    }
     unselectColorBox()
     selectColorBox(box)
     setColor(getColorBoxColor(box))
   })
 })
+
+function isCustomColor(box) {
+  if (box) {
+    return box.classList.contains("custom")
+  }
+}
+
+function isSelected(box) {
+  return box.classList.contains("selected")
+}
+
+function getSelected() {
+  return document.querySelector(".selected")
+}
 
 function selectColorBox(box) {
   box.classList.add("selected")
@@ -54,7 +75,6 @@ function resize() {
   makeGrid(heightInputValue, widthInputValue)
 }
 
-
 function checkGridSize(number) {
   if (number < 1) {
     return 1
@@ -70,14 +90,14 @@ function makeGridProportion(rows, columns) {
     grid.style.height = `${height}px`
   } else if (rows < columns) {
     grid.style.width = `${width}px`
-    grid.style.height = `${rows/columns*height}px`
+    grid.style.height = `${(rows / columns) * height}px`
   } else if (rows > columns) {
-    grid.style.width = `${columns/rows*width}px`
+    grid.style.width = `${(columns / rows) * width}px`
     grid.style.height = `${height}px`
   }
 }
 
-function makeGrid(rows=16, columns=16) {
+function makeGrid(rows = 16, columns = 16) {
   rows = checkGridSize(rows)
   columns = checkGridSize(columns)
   makeGridProportion(rows, columns)
@@ -85,7 +105,7 @@ function makeGrid(rows=16, columns=16) {
     const row = document.createElement("div")
     row.className = "grid-row"
     grid.appendChild(row)
-    for (let c = 0; c < columns; c++){
+    for (let c = 0; c < columns; c++) {
       const gridSquare = document.createElement("div")
       gridSquare.className = "grid-square"
       row.appendChild(gridSquare)

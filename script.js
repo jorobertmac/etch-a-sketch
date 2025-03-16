@@ -6,6 +6,7 @@ let color = "rgb(0, 0, 0)"
 // querySelectors
 const grid = document.querySelector("#grid")
 const toggleGrid = document.querySelector("#toggle-grid")
+const gridColor = document.querySelector("#grid-color")
 const resizeButton = document.querySelector("#resize")
 const colorPicker = document.querySelector("#color-picker")
 const colorBox = document.querySelectorAll(".color-box")
@@ -13,6 +14,7 @@ const colorPreviewPrimary = document.querySelector("#primary")
 
 // addEventListeners
 toggleGrid.addEventListener("click", toggleGridView)
+gridColor.addEventListener("input", setGridColor)
 resizeButton.addEventListener("click", resize)
 colorPicker.addEventListener("input", (e) => {
   setColor(e.target.value)
@@ -36,6 +38,12 @@ colorBox.forEach((box) => {
 // functions
 function getGridSquareAll() {
   return document.querySelectorAll(".grid-square")
+}
+
+function setGridColor() {
+  getGridSquareAll().forEach((box) => {
+    box.style.borderColor = gridColor.value
+  })
 }
 
 function toggleGridView() {

@@ -2,6 +2,7 @@
 let width = 300
 let height = 300
 let color = "rgb(0, 0, 0)"
+let gridView = true
 
 // querySelectors
 const grid = document.querySelector("#grid")
@@ -40,30 +41,53 @@ function getGridSquareAll() {
   return document.querySelectorAll(".grid-square")
 }
 
+function getGridRowAll() {
+  return document.querySelectorAll(".grid-row")
+}
+
 function setGridColor() {
+  getGridRowAll().forEach((row) => {
+    row.style.borderColor = gridColor.value
+  })
   getGridSquareAll().forEach((box) => {
     box.style.borderColor = gridColor.value
   })
 }
 
 function toggleGridView() {
-  const box = document.querySelector(".grid-square")
-  if (box.style.borderWidth === "1px") {
-    hideGrid()
-  } else {
+  gridView = !gridView
+  checkGridView()
+}
+
+function checkGridView() {
+  if (gridView) {
     showGrid()
+  } else {
+    hideGrid()
   }
 }
 
 function hideGrid() {
+  getGridRowAll().forEach((row) => {
+    row.style.borderWidth = "0px"
+  })
   getGridSquareAll().forEach((box) => {
     box.style.borderWidth = "0px"
   })
 }
 
 function showGrid() {
+  getGridRowAll().forEach((row) => {
+    if (row === row.parentNode.firstElementChild) return 
+    row.style.borderWidth = "1px 0 0 0"
+    row.style.borderStyle = "solid"
+    row.style.borderColor = gridColor.value
+  })  
   getGridSquareAll().forEach((box) => {
-    box.style.borderWidth = "1px"
+    if (box === box.parentNode.firstElementChild) return
+    box.style.borderWidth = "0 0 0 1px"
+    box.style.borderStyle = "solid"
+    box.style.borderColor = gridColor.value
   })
 }
 

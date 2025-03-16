@@ -8,6 +8,7 @@ let gridView = true
 const canvas = document.querySelector("#canvas")
 const toggleGrid = document.querySelector("#toggle-grid")
 const gridColor = document.querySelector("#grid-color")
+const viewport = document.querySelector("#viewport")
 const resizeButton = document.querySelector("#resize")
 const colorPicker = document.querySelector("#color-picker")
 const colorBox = document.querySelectorAll(".color-box")
@@ -16,6 +17,7 @@ const colorPreviewPrimary = document.querySelector("#primary")
 // addEventListeners
 toggleGrid.addEventListener("click", toggleGridView)
 gridColor.addEventListener("input", setGridColor)
+viewport.addEventListener("change", setViewport)
 resizeButton.addEventListener("click", resize)
 colorPicker.addEventListener("input", (e) => {
   setColor(e.target.value)
@@ -124,15 +126,32 @@ function setColor(newColor) {
   colorPreviewPrimary.style.backgroundColor = color
 }
 
-function resize() {
+function setViewport() {
+  viewport.min = Math.max(getWidthInput()*4, getHeightInput()*4)
+  width = viewport.value
+  height = viewport.value
+  makeGridProportion(getHeightInput(), getWidthInput())
+  console.log(viewport.value);
+  
+}
+
+function getWidthInput() {
   const widthInput = document.querySelector("#width")
-  const heightInput = document.querySelector("#height")
-  let widthInputValue = checkGridSize(parseInt(widthInput.value))
-  let heightInputValue = checkGridSize(parseInt(heightInput.value))
+  const widthInputValue = checkGridSize(parseInt(widthInput.value))
   widthInput.value = widthInputValue
+  return widthInputValue
+}
+
+function getHeightInput() {
+  const heightInput = document.querySelector("#height")
+  const heightInputValue = checkGridSize(parseInt(heightInput.value))
   heightInput.value = heightInputValue
-  grid.replaceChildren()
-  makeGrid(heightInputValue, widthInputValue)
+  return heightInputValue
+}
+
+function resize() {
+  canvas.replaceChildren()
+  makeGrid(getHeightInput(), getWidthInput())
 }
 
 function checkGridSize(number) {
@@ -160,7 +179,7 @@ function makeGridProportion(rows, columns) {
 function makeGrid(rows = 16, columns = 16) {
   rows = checkGridSize(rows)
   columns = checkGridSize(columns)
-  makeGridProportion(rows, columns)
+  setViewport()
   for (let r = 0; r < rows; r++) {
     const row = document.createElement("div")
     row.className = "grid-row"
@@ -171,6 +190,7 @@ function makeGrid(rows = 16, columns = 16) {
       row.appendChild(gridSquare)
     }
   }
+  checkGridView()
 }
 
 makeGrid()

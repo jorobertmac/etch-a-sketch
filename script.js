@@ -70,6 +70,7 @@ function checkGridView() {
 }
 
 function hideGrid() {
+  canvas.style.borderColor = "#000"
   getGridRowAll().forEach((row) => {
     row.style.borderWidth = "0px"
   })
@@ -79,6 +80,7 @@ function hideGrid() {
 }
 
 function showGrid() {
+  canvas.style.borderColor = gridColor.value
   getGridRowAll().forEach((row) => {
     if (row === row.parentNode.firstElementChild) return 
     row.style.borderWidth = "1px 0 0 0"

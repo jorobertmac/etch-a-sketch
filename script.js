@@ -1,6 +1,6 @@
 // variables
-const width = 750
-const height = 750
+let width = 300
+let height = 300
 let color = "rgb(0, 0, 0)"
 
 // querySelectors

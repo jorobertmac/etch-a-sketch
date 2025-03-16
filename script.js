@@ -5,12 +5,14 @@ let color = "rgb(0, 0, 0)"
 
 // querySelectors
 const grid = document.querySelector("#grid")
+const toggleGrid = document.querySelector("#toggle-grid")
 const resizeButton = document.querySelector("#resize")
 const colorPicker = document.querySelector("#color-picker")
 const colorBox = document.querySelectorAll(".color-box")
 const colorPreviewPrimary = document.querySelector("#primary")
 
 // addEventListeners
+toggleGrid.addEventListener("click", toggleGridView)
 resizeButton.addEventListener("click", resize)
 colorPicker.addEventListener("input", (e) => {
   setColor(e.target.value)
@@ -30,6 +32,32 @@ colorBox.forEach((box) => {
     setColor(getColorBoxColor(box))
   })
 })
+
+// functions
+function getGridSquareAll() {
+  return document.querySelectorAll(".grid-square")
+}
+
+function toggleGridView() {
+  const box = document.querySelector(".grid-square")
+  if (box.style.borderWidth === "1px") {
+    hideGrid()
+  } else {
+    showGrid()
+  }
+}
+
+function hideGrid() {
+  getGridSquareAll().forEach((box) => {
+    box.style.borderWidth = "0px"
+  })
+}
+
+function showGrid() {
+  getGridSquareAll().forEach((box) => {
+    box.style.borderWidth = "1px"
+  })
+}
 
 function isCustomColor(box) {
   if (box) {

@@ -153,8 +153,6 @@ function setViewport() {
   width = viewport.value
   height = viewport.value
   makeGridProportion(getHeightInput(), getWidthInput())
-  console.log(viewport.value);
-  
 }
 
 function getWidthInput() {

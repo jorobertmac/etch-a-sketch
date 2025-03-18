@@ -51,6 +51,7 @@ function getGridRowAll() {
 }
 
 function setGridColor() {
+  canvas.style.borderColor = gridColor.value
   getGridRowAll().forEach((row) => {
     row.style.borderColor = gridColor.value
   })

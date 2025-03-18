@@ -19,6 +19,9 @@ toggleGrid.addEventListener("click", toggleGridView)
 gridColor.addEventListener("input", setGridColor)
 viewport.addEventListener("change", setViewport)
 resizeButton.addEventListener("click", resize)
+canvas.addEventListener("mousedown", drawStart)
+canvas.addEventListener("mouseup", drawEnd)
+
 colorPicker.addEventListener("input", (e) => {
   setColor(e.target.value)
   if (isCustomColor(getSelected())) {
@@ -93,6 +96,22 @@ function showGrid() {
     box.style.borderStyle = "solid"
     box.style.borderColor = gridColor.value
   })
+}
+
+function drawEnd() {
+  getGridSquareAll().forEach((box) => {
+    box.removeEventListener("mouseover", applyColor)
+  })
+}
+
+function drawStart() {
+  getGridSquareAll().forEach((box) => {
+    box.addEventListener("mouseover", applyColor)
+  })
+}
+
+function applyColor() {
+  this.style.backgroundColor = color
 }
 
 function isCustomColor(box) {

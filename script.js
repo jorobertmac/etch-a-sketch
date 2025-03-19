@@ -101,13 +101,13 @@ function showGrid() {
 
 function drawEnd() {
   getGridSquareAll().forEach((box) => {
-    box.removeEventListener("mouseover", applyColor)
+    box.removeEventListener("mousemove", applyColor)
   })
 }
 
 function drawStart() {
   getGridSquareAll().forEach((box) => {
-    box.addEventListener("mouseover", applyColor)
+    box.addEventListener("mousemove", applyColor, {once: true})
   })
 }
 

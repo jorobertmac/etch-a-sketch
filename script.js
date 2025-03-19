@@ -21,6 +21,7 @@ viewport.addEventListener("change", setViewport)
 resizeButton.addEventListener("click", resize)
 canvas.addEventListener("mousedown", drawStart)
 canvas.addEventListener("mouseup", drawEnd)
+canvas.addEventListener("mouseleave", drawEnd)
 
 colorPicker.addEventListener("input", (e) => {
   setColor(e.target.value)

@@ -8,7 +8,7 @@ let gridView = true
 const canvas = document.querySelector("#canvas")
 const toggleGrid = document.querySelector("#toggle-grid")
 const gridColor = document.querySelector("#grid-color")
-const viewport = document.querySelector("#viewport")
+const zoom = document.querySelector("#zoom")
 const resizeButton = document.querySelector("#resize")
 const colorPicker = document.querySelector("#color-picker")
 const colorBox = document.querySelectorAll(".color-box")
@@ -17,7 +17,7 @@ const colorPreviewPrimary = document.querySelector("#primary")
 // addEventListeners
 toggleGrid.addEventListener("click", toggleGridView)
 gridColor.addEventListener("input", setGridColor)
-viewport.addEventListener("change", setViewport)
+zoom.addEventListener("change", setZoom)
 resizeButton.addEventListener("click", resize)
 canvas.addEventListener("mousedown", drawStart)
 canvas.addEventListener("mouseup", drawEnd)
@@ -149,10 +149,10 @@ function setColor(newColor) {
   colorPreviewPrimary.style.backgroundColor = color
 }
 
-function setViewport() {
-  viewport.min = Math.max(getWidthInput()*4, getHeightInput()*4)
-  width = viewport.value
-  height = viewport.value
+function setZoom() {
+  zoom.min = Math.max(getWidthInput()*4, getHeightInput()*4)
+  width = zoom.value
+  height = zoom.value
   makeGridProportion(getHeightInput(), getWidthInput())
 }
 
@@ -200,7 +200,7 @@ function makeGridProportion(rows, columns) {
 function makeGrid(rows = 16, columns = 16) {
   rows = checkGridSize(rows)
   columns = checkGridSize(columns)
-  setViewport()
+  setZoom()
   for (let r = 0; r < rows; r++) {
     const row = document.createElement("div")
     row.className = "grid-row"

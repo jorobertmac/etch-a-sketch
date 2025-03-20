@@ -80,7 +80,7 @@ body {
   display: flex;
   flex-direction: column;
   border: 1px solid black;
-  cursor: none;
+  cursor: url("cursor.png"), default;
 }
 
 .grid-row {
@@ -95,8 +95,3 @@ body {
   width: 100%;
   height: 100%;
 }
-
-.grid-square:hover {
-  background-color: green;
-}
-

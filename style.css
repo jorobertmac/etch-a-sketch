@@ -80,7 +80,7 @@ body {
   display: flex;
   flex-direction: column;
   border: 1px solid black;
-  cursor: url("cursor.png"), default;
+  cursor: url("cursor.png") 4 4, default;
 }
 
 .grid-row {

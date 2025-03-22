@@ -20,6 +20,9 @@ gridColor.addEventListener("input", setGridColor)
 zoom.addEventListener("change", setZoom)
 resizeButton.addEventListener("click", resize)
 canvas.addEventListener("mousedown", drawStart)
+
+canvas.addEventListener("mouseover", drawReady)
+
 canvas.addEventListener("mouseup", drawEnd)
 canvas.addEventListener("mouseleave", drawEnd)
 
@@ -109,6 +112,12 @@ function drawEnd() {
 function drawStart() {
   getGridSquareAll().forEach((box) => {
     box.addEventListener("mousemove", applyColor, {once: true})
+  })
+}
+
+function drawReady() {
+  getGridSquareAll().forEach((box) => {
+    box.addEventListener("mousedown", applyColor)
   })
 }
 

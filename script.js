@@ -20,9 +20,7 @@ gridColor.addEventListener("input", setGridColor)
 zoom.addEventListener("change", setZoom)
 resizeButton.addEventListener("click", resize)
 canvas.addEventListener("mousedown", drawStart)
-
 canvas.addEventListener("mouseover", drawReady)
-
 canvas.addEventListener("mouseup", drawEnd)
 canvas.addEventListener("mouseleave", drawEnd)
 
@@ -90,11 +88,11 @@ function hideGrid() {
 function showGrid() {
   canvas.style.borderColor = gridColor.value
   getGridRowAll().forEach((row) => {
-    if (row === row.parentNode.firstElementChild) return 
+    if (row === row.parentNode.firstElementChild) return
     row.style.borderWidth = "1px 0 0 0"
     row.style.borderStyle = "solid"
     row.style.borderColor = gridColor.value
-  })  
+  })
   getGridSquareAll().forEach((box) => {
     if (box === box.parentNode.firstElementChild) return
     box.style.borderWidth = "0 0 0 1px"
@@ -111,7 +109,7 @@ function drawEnd() {
 
 function drawStart() {
   getGridSquareAll().forEach((box) => {
-    box.addEventListener("mousemove", applyColor, {once: true})
+    box.addEventListener("mousemove", applyColor, { once: true })
   })
 }
 
@@ -159,7 +157,7 @@ function setColor(newColor) {
 }
 
 function setZoom() {
-  zoom.min = Math.max(getWidthInput()*4, getHeightInput()*4)
+  zoom.min = Math.max(getWidthInput() * 4, getHeightInput() * 4)
   width = zoom.value
   height = zoom.value
   makeGridProportion(getHeightInput(), getWidthInput())

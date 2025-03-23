@@ -20,7 +20,6 @@ gridColor.addEventListener("input", setGridColor)
 zoom.addEventListener("change", setZoom)
 resizeButton.addEventListener("click", resize)
 canvas.addEventListener("mousedown", drawStart)
-canvas.addEventListener("mouseover", drawReady)
 canvas.addEventListener("mouseup", drawEnd)
 canvas.addEventListener("mouseleave", drawEnd)
 
@@ -219,6 +218,7 @@ function makeGrid(rows = 16, columns = 16) {
     }
   }
   checkGridView()
+  drawReady()
 }
 
 makeGrid()

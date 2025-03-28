@@ -83,12 +83,22 @@ body {
   border-radius: 25%;
 }
 
+.erase-active {
+  border-width: 2px;
+  border-radius: 25%;
+  background-color: red;
+}
+
 #canvas {
   box-sizing: content-box;
   display: flex;
   flex-direction: column;
   border: 1px solid black;
   cursor: url("cursor.png") 3 3, default;
+}
+
+#primary {
+  background-color: black;
 }
 
 .grid-row {

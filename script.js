@@ -1,8 +1,14 @@
 // variables
 let width = 300
 let height = 300
-let color = "rgb(0, 0, 0)"
+
+let colorApply
+let colorPrimary = "rgb(0, 0, 0)"
+let colorSecondary = "rgb(255, 255, 255)"
+let colorErase = "rgb(255, 255, 255)"
+
 let gridView = true
+let erase = false
 
 // querySelectors
 const canvas = document.querySelector("#canvas")
@@ -12,21 +18,40 @@ const zoom = document.querySelector("#zoom")
 const resizeButton = document.querySelector("#resize")
 const colorPicker = document.querySelector("#color-picker")
 const colorBox = document.querySelectorAll(".color-box")
+const colorPreview = document.querySelectorAll(".color-preview")
 const colorPreviewPrimary = document.querySelector("#primary")
+const colorPreviewSecondary = document.querySelector("#secondary")
+const eraseButton = document.querySelector("#erase")
 
 // addEventListeners
 toggleGrid.addEventListener("click", toggleGridView)
 gridColor.addEventListener("input", setGridColor)
 zoom.addEventListener("change", setZoom)
 resizeButton.addEventListener("click", resize)
-canvas.addEventListener("mousedown", drawStart)
+canvas.addEventListener("contextmenu", (e) => {
+  e.preventDefault()
+})
+canvas.addEventListener("mousedown", (e) => {
+  drawStart(e)
+})
 canvas.addEventListener("mouseup", drawEnd)
 canvas.addEventListener("mouseleave", drawEnd)
 
-colorPicker.addEventListener("input", (e) => {
-  setColor(e.target.value)
+colorPicker.addEventListener("pointerdown", () => {
   if (isCustomColor(getSelected())) {
-    getSelected().style.backgroundColor = color
+    getSelected().style.backgroundColor = colorPicker.value
+  }
+})
+colorPicker.addEventListener("input", (e) => {
+  const newColor = colorPicker.value
+  if (isCustomColor(getSelected())) {
+    getSelected().style.backgroundColor = newColor
+  }
+  getCurrent().style.backgroundColor = newColor
+  if (getCurrent().id === "primary") {
+    setColorPrimary(newColor)
+  } else if (getCurrent().id === "secondary") {
+    setColorSecondary(newColor)
   }
 })
 
@@ -38,9 +63,22 @@ colorBox.forEach((box) => {
     }
     unselectColorBox()
     selectColorBox(box)
-    setColor(getColorBoxColor(box))
+    if (getCurrent().id === "primary") {
+      setColorPrimary(getColorBoxColor(box))
+    } else if (getCurrent().id === "secondary") {
+      setColorSecondary(getColorBoxColor(box))
+    }
   })
 })
+
+colorPreview.forEach((box) => {
+  box.addEventListener("click", () => {
+    getCurrent().classList.toggle("current")
+    box.classList.toggle("current")
+  })
+})
+
+eraseButton.addEventListener("click", toggleErase)
 
 // functions
 function getGridSquareAll() {
@@ -100,26 +138,33 @@ function showGrid() {
   })
 }
 
+function drawStart(event) {
+  if (erase) {
+    colorApply = colorErase
+  }
+  else if (event.button === 0) {
+    colorApply = colorPrimary
+  }
+  else if (event.button === 2) {
+    colorApply = colorSecondary
+  }
+
+  if (event.target.classList.contains("grid-row")) {
+    return
+  }
+  event.target.style.backgroundColor = colorApply
+  getGridSquareAll().forEach((pixel) => {
+    pixel.addEventListener("mouseenter", applyColor)
+  })
+}
+
 function drawEnd() {
   getGridSquareAll().forEach((box) => {
-    box.removeEventListener("mousemove", applyColor)
+    box.removeEventListener("mouseenter", applyColor)
   })
 }
-
-function drawStart() {
-  getGridSquareAll().forEach((box) => {
-    box.addEventListener("mousemove", applyColor, { once: true })
-  })
-}
-
-function drawReady() {
-  getGridSquareAll().forEach((box) => {
-    box.addEventListener("mousedown", applyColor)
-  })
-}
-
 function applyColor() {
-  this.style.backgroundColor = color
+  this.style.backgroundColor = colorApply
 }
 
 function isCustomColor(box) {
@@ -136,6 +181,10 @@ function getSelected() {
   return document.querySelector(".selected")
 }
 
+function getCurrent() {
+  return document.querySelector(".current")
+}
+
 function selectColorBox(box) {
   box.classList.add("selected")
 }
@@ -150,9 +199,15 @@ function getColorBoxColor(box) {
   return window.getComputedStyle(box).getPropertyValue(`background-color`)
 }
 
-function setColor(newColor) {
-  color = newColor
-  colorPreviewPrimary.style.backgroundColor = color
+
+function setColorPrimary(newColor) {
+  colorPrimary = newColor
+  colorPreviewPrimary.style.backgroundColor = colorPrimary
+}
+
+function setColorSecondary(newColor) {
+  colorSecondary = newColor
+  colorPreviewSecondary.style.backgroundColor = colorSecondary
 }
 
 function setZoom() {
@@ -179,6 +234,11 @@ function getHeightInput() {
 function resize() {
   canvas.replaceChildren()
   makeGrid(getHeightInput(), getWidthInput())
+}
+
+function toggleErase() {
+  erase = !erase
+  eraseButton.classList.toggle("erase-active")
 }
 
 function checkGridSize(number) {
@@ -218,7 +278,6 @@ function makeGrid(rows = 16, columns = 16) {
     }
   }
   checkGridView()
-  drawReady()
 }
 
 makeGrid()

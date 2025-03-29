@@ -10,54 +10,53 @@
 <body>
   <div id="setup">
     <button id="toggle-grid">Grid</button>
-    <input type="color" name="" id="grid-color" value="#000000">
-    <label for="zoom">Zoom</label>
-    <input type="range" name="zoom" id="zoom" min="100" max="900" value="300">
-    <label for="width">Width</label>
-    <input type="number" id="width" name="width" min="1" max="100" value="16">
-    <label for="height">Height</label>
-    <input type="number" id="height" name="height" min="1" max="100" value="16">
+    <p>Grid Color<input type="color" id="grid-color" value="#000000"></p>
+    <p>Zoom<input type="range" name="zoom" id="zoom" min="100" max="900" value="300"></p>
+    <p>Width<input type="number" id="width" name="width" min="1" max="100" value="16"></p>
+    <p>Height<input type="number" id="height" name="height" min="1" max="100" value="16"></p>
     <button id="resize">Resize</button>
   </div>
   <div id="canvas">
   </div>
   <div id="color-control">
+    <button id="erase">Erase</button>
     <div class="color-grid" id="color-basic">
       <div class="row">
-        <div id="black-box" class="color-box basic"></div>
-        <div id="red-box" class="color-box basic"></div>
-        <div id="orange-box" class="color-box basic"></div>
-        <div id="yellow-box" class="color-box basic"></div>
-        <div id="brown-box" class="color-box basic"></div>
+        <button id="black-box" class="color-box basic">B</button>
+        <button id="red-box" class="color-box basic">R</button>
+        <button id="orange-box" class="color-box basic">O</button>
+        <button id="yellow-box" class="color-box basic">Y</button>
+        <button id="brown-box" class="color-box basic">C</button>
       </div>
       <div class="row">
-        <div id="white-box" class="color-box basic"></div>
-        <div id="purple-box" class="color-box basic"></div>
-        <div id="blue-box" class="color-box basic"></div>
-        <div id="green-box" class="color-box basic"></div>
-        <div id="gray-box" class="color-box basic"></div>
+        <button id="white-box" class="color-box basic">W</button>
+        <button id="purple-box" class="color-box basic">V</button>
+        <button id="blue-box" class="color-box basic">L</button>
+        <button id="green-box" class="color-box basic">G</button>
+        <button id="gray-box" class="color-box basic">A</button>
       </div>
     </div>
-    <button id="primary" class="color-preview current"></button>
-    <button id="secondary" class="color-preview"></button>
-    <input type="color" name="" id="color-picker">
+    <p>Primary<button id="primary" class="color-preview current"></button></p>
+    
+    <p>Secondary<button id="secondary" class="color-preview"></button></p>
+    
     <div class="color-grid" id="color-custom">
       <div class="row">
-        <div id="custom-box0" class="color-box custom"></div>
-        <div id="custom-box1" class="color-box custom"></div>
-        <div id="custom-box2" class="color-box custom"></div>
-        <div id="custom-box3" class="color-box custom"></div>
-        <div id="custom-box4" class="color-box custom"></div>
+        <button id="custom-box0" class="color-box custom">0</button>
+        <button id="custom-box1" class="color-box custom">1</button>
+        <button id="custom-box2" class="color-box custom">2</button>
+        <button id="custom-box3" class="color-box custom">3</button>
+        <button id="custom-box4" class="color-box custom">4</button>
       </div>
       <div class="row">
-        <div id="custom-box5" class="color-box custom"></div>
-        <div id="custom-box6" class="color-box custom"></div>
-        <div id="custom-box7" class="color-box custom"></div>
-        <div id="custom-box8" class="color-box custom"></div>
-        <div id="custom-box9" class="color-box custom"></div>
+        <button id="custom-box5" class="color-box custom">5</button>
+        <button id="custom-box6" class="color-box custom">6</button>
+        <button id="custom-box7" class="color-box custom">7</button>
+        <button id="custom-box8" class="color-box custom">8</button>
+        <button id="custom-box9" class="color-box custom">9</button>
       </div>
     </div>
-    <button id="erase">Erase</button>
+      <p>Custom Color<input type="color" id="color-picker"></p>
   </div>
 </body>
 </html>

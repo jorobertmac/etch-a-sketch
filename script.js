@@ -54,6 +54,18 @@ colorPicker.addEventListener("input", (e) => {
     setColorSecondary(newColor)
   }
 })
+colorPicker.addEventListener("click", (e) => {
+  const newColor = colorPicker.value
+  if (isCustomColor(getSelected())) {
+    getSelected().style.backgroundColo5r = newColor
+  }
+  getCurrent().style.backgroundColor = newColor
+  if (getCurrent().id === "primary") {
+    setColorPrimary(newColor)
+  } else if (getCurrent().id === "secondary") {
+    setColorSecondary(newColor)
+  }
+})
 
 colorBox.forEach((box) => {
   box.addEventListener("click", () => {
@@ -79,6 +91,86 @@ colorPreview.forEach((box) => {
 })
 
 eraseButton.addEventListener("click", toggleErase)
+
+// Shortcut event listener
+window.addEventListener("keyup", (e) => {
+  key = e.key
+  if (key === "p") {
+    document.querySelector("#primary").click()
+  }
+  if (key === "s") {
+    document.querySelector("#secondary").click()
+  }
+  if (key === "e") {
+    document.querySelector("#erase").click()
+  }
+  if (key === "x") {
+    document.querySelector("#toggle-grid").click()
+  }
+  if (key === "r") {
+    document.querySelector("#red-box").click()
+  }
+  if (key === "o") {
+    document.querySelector("#orange-box").click()
+  }
+  if (key === "y") {
+    document.querySelector("#yellow-box").click()
+  }
+  if (key === "b") {
+    document.querySelector("#black-box").click()
+  }
+  if (key === "w") {
+    document.querySelector("#white-box").click()
+  }
+  if (key === "g") {
+    document.querySelector("#green-box").click()
+  }
+  if (key === "n") {
+    document.querySelector("#blue-box").click()
+  }
+  if (key === "v") {
+    document.querySelector("#violet-box").click()
+  }
+  if (key === "c") {
+    document.querySelector("#charcoal-box").click()
+  }
+  if (key === "m") {
+    document.querySelector("#mocha-box").click()
+  }
+  if (key === ".") {
+    document.querySelector("#color-picker").click()
+  }
+  if (key === "0") {
+    document.querySelector("#custom-box0").click()
+  }
+  if (key === "1") {
+    document.querySelector("#custom-box1").click()
+  }
+  if (key === "2") {
+    document.querySelector("#custom-box2").click()
+  }
+  if (key === "3") {
+    document.querySelector("#custom-box3").click()
+  }
+  if (key === "4") {
+    document.querySelector("#custom-box4").click()
+  }
+  if (key === "5") {
+    document.querySelector("#custom-box5").click()
+  }
+  if (key === "6") {
+    document.querySelector("#custom-box6").click()
+  }
+  if (key === "7") {
+    document.querySelector("#custom-box7").click()
+  }
+  if (key === "8") {
+    document.querySelector("#custom-box8").click()
+  }
+  if (key === "9") {
+    document.querySelector("#custom-box9").click()
+  }
+})
 
 // functions
 function getGridSquareAll() {
